@@ -1,6 +1,6 @@
 #### **Part 1: The Fundamental Problem (Why We Need a DW)**
 
-The core issue is that systems designed for daily operations (**OLTP**) are terrible for business analysis (**OLAP**). Answering "why" starts here.
+Systems designed for daily operations (**OLTP**) are terrible for business analysis (**OLAP**).
 
 | Feature | **OLTP (Online Transactional Processing)** | **OLAP (Online Analytical Processing)** |
 | :--- | :--- | :--- |
@@ -32,7 +32,26 @@ A data warehouse is a collection of data that is:
 
 ---
 
-#### **Part 3: The Strategic Decision (Inmon vs. Kimball)**
+
+#### **Part 3: Dependent vs. Independent Data Marts (Critical Justification Point)**
+
+For any enterprise-level analysis, **dependent data marts** are the correct strategic choice. An independent approach is a tactical error that creates long-term problems.
+
+| Feature | **Dependent Data Marts (Correct Choice)** | **Independent Data Marts (Incorrect Choice)** |
+| :--- | :--- | :--- |
+| **Data Source** | Draws from a central **Enterprise Data Warehouse (EDW)**. | Draws directly from operational sources. |
+| **Consistency** | **Guaranteed.** All marts use the same definitions and business rules from the **single source of truth**. | **None.** Leads to **inconsistent metrics** and conflicting reports. |
+| **Governance** | **Centralized governance** and data quality control. | **Decentralized chaos.** Each department defines its own rules. |
+| **Cost / Effort** | High initial effort for the EDW, but low effort to create new marts. **Efficient** in the long run. | Low initial effort per mart, but massive **duplicated effort** and high maintenance costs overall. |
+| **Key Outcome**| A **holistic, enterprise-wide view** of the business. | **Data silos** that make enterprise-level analysis impossible. |
+
+**Exam Justification Template:** Governence, Consistency, Cost & Effort
+"The recommendation is to build **dependent data marts**. The primary goal of the project is to achieve [mention goal, e.g., 'national-level policy planning' or 'a 360-degree customer view']. This requires a **single source of truth**, which only a dependent model drawing from a central EDW can provide. An independent approach would inevitably lead to **data silos** and **inconsistent metrics** (e.g., one department defining 'active user' differently from another), rendering any enterprise-level analysis unreliable and invalid."
+
+
+---
+
+#### **Part 4: The Strategic Decision (Inmon vs. Kimball)**
 
 This is the high-level philosophical choice you make before building.
 
@@ -46,7 +65,7 @@ This is the high-level philosophical choice you make before building.
 
 ---
 
-#### **Part 4: The 5 Key Architectural Models (The Blueprints)**
+#### **Part 5: The 5 Key Architectural Models (The Blueprints)**
 
 ##### **1. Centralized Data Warehouse (Pure Inmon)**
 A single, massive EDW serves all users directly. No data marts.
@@ -80,7 +99,7 @@ A **virtual warehouse**. It leaves existing systems in place and uses middleware
 
 ---
 
-#### **Part 5: Dimensional Modeling (The Design Blueprint)**
+#### **Part 6: Dimensional Modeling (The Design Blueprint)**
 
 This is how you design the tables inside the warehouse for fast, intuitive analysis.
 
@@ -125,7 +144,7 @@ These are logical structures within a dimension that allow users to analyze data
 
 ---
 
-#### **Part 6: The ETL Process (Populating the DW)**
+#### **Part 7: The ETL Process (Populating the DW)**
 
 1.  **Extract:** Pulling raw data from **heterogeneous source systems** (databases, files, APIs) using **bulk** (initial) and **incremental** (ongoing) loads.
 2.  **Transform:** The most complex step, performed in a **Staging Area**.
@@ -136,7 +155,7 @@ These are logical structures within a dimension that allow users to analyze data
 
 ---
 
-#### **Part 7: OLAP and Cube Navigation (Using the DW)**
+#### **Part 8: OLAP and Cube Navigation (Using the DW)**
 
 The **OLAP Cube** is the logical, multidimensional structure (composed of measures and dimensions) that allows for fast and intuitive data analysis.
 *   **Slice:** Filtering on a single value of one dimension (e.g., `Year = 2023`).
@@ -146,7 +165,7 @@ The **OLAP Cube** is the logical, multidimensional structure (composed of measur
 *   **Pivot (Rotate):** Swapping the axes of the view (e.g., moving `Products` from rows to columns).
 
 ---
-#### **Part 8: Justification Framework (With vs. Without a DW)**
+#### **Part 9: Justification Framework (With vs. Without a DW)**
 
 | Feature | **Consequences Without a DW (The Problem)** | **Benefits With a DW (The Solution)** |
 | :--- | :--- | :--- |
