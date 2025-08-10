@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="460pt" height="204pt" viewBox="0.00 0.00 459.75 204.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 200)">
+<title>Federated</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-200 455.75,-200 455.75,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_sources</title>
+<polygon fill="none" stroke="black" stroke-dasharray="5,2" points="7.79,-8 7.79,-188 147.95,-188 147.95,-8 7.79,-8"/>
+<text text-anchor="middle" x="77.87" y="-175" font-family="Verdana" font-size="10.00">Existing Legacy Systems</text>
+</g>
+<!-- Src1 -->
+<g id="node1" class="node">
+<title>Src1</title>
+<path fill="lightgray" stroke="black" d="M111.94,-156.73C111.94,-158.53 96.44,-160 77.37,-160 58.29,-160 42.8,-158.53 42.8,-156.73 42.8,-156.73 42.8,-127.27 42.8,-127.27 42.8,-125.47 58.29,-124 77.37,-124 96.44,-124 111.94,-125.47 111.94,-127.27 111.94,-127.27 111.94,-156.73 111.94,-156.73"/>
+<path fill="none" stroke="black" d="M111.94,-156.73C111.94,-154.92 96.44,-153.45 77.37,-153.45 58.29,-153.45 42.8,-154.92 42.8,-156.73"/>
+<text text-anchor="middle" x="77.37" y="-137.8" font-family="Verdana" font-size="14.00">Old DW</text>
+</g>
+<!-- VirtualLayer -->
+<g id="node4" class="node">
+<title>VirtualLayer</title>
+<polygon fill="lightyellow" stroke="black" points="311.21,-108.8 176.95,-108.8 176.95,-67.2 311.21,-67.2 311.21,-108.8"/>
+<text text-anchor="middle" x="244.08" y="-92.2" font-family="Verdana" font-size="14.00">Federation Layer</text>
+<text text-anchor="middle" x="244.08" y="-75.4" font-family="Verdana" font-size="14.00">(Middleware)</text>
+</g>
+<!-- Src1&#45;&gt;VirtualLayer -->
+<g id="edge1" class="edge">
+<title>Src1-&gt;VirtualLayer</title>
+<path fill="none" stroke="black" d="M112.1,-130.94C128.22,-125.66 148.21,-119.1 167.68,-112.72"/>
+<polygon fill="black" stroke="black" points="168.57,-116.11 176.98,-109.67 166.39,-109.46 168.57,-116.11"/>
+</g>
+<!-- Src2 -->
+<g id="node2" class="node">
+<title>Src2</title>
+<path fill="lightgray" stroke="black" d="M122.41,-102.73C122.41,-104.53 102.22,-106 77.37,-106 52.52,-106 32.33,-104.53 32.33,-102.73 32.33,-102.73 32.33,-73.27 32.33,-73.27 32.33,-71.47 52.52,-70 77.37,-70 102.22,-70 122.41,-71.47 122.41,-73.27 122.41,-73.27 122.41,-102.73 122.41,-102.73"/>
+<path fill="none" stroke="black" d="M122.41,-102.73C122.41,-100.92 102.22,-99.45 77.37,-99.45 52.52,-99.45 32.33,-100.92 32.33,-102.73"/>
+<text text-anchor="middle" x="77.37" y="-83.8" font-family="Verdana" font-size="14.00">Sales Mart</text>
+</g>
+<!-- Src2&#45;&gt;VirtualLayer -->
+<g id="edge2" class="edge">
+<title>Src2-&gt;VirtualLayer</title>
+<path fill="none" stroke="black" d="M122.51,-88C135.72,-88 150.62,-88 165.32,-88"/>
+<polygon fill="black" stroke="black" points="164.98,-91.5 174.98,-88 164.98,-84.5 164.98,-91.5"/>
+</g>
+<!-- Src3 -->
+<g id="node3" class="node">
+<title>Src3</title>
+<path fill="lightgray" stroke="black" d="M138.74,-48.73C138.74,-50.53 111.23,-52 77.37,-52 43.51,-52 16,-50.53 16,-48.73 16,-48.73 16,-19.27 16,-19.27 16,-17.47 43.51,-16 77.37,-16 111.23,-16 138.74,-17.47 138.74,-19.27 138.74,-19.27 138.74,-48.73 138.74,-48.73"/>
+<path fill="none" stroke="black" d="M138.74,-48.73C138.74,-46.92 111.23,-45.45 77.37,-45.45 43.51,-45.45 16,-46.92 16,-48.73"/>
+<text text-anchor="middle" x="77.37" y="-29.8" font-family="Verdana" font-size="14.00">Operational DB</text>
+</g>
+<!-- Src3&#45;&gt;VirtualLayer -->
+<g id="edge3" class="edge">
+<title>Src3-&gt;VirtualLayer</title>
+<path fill="none" stroke="black" d="M131.39,-51.38C142.96,-55.17 155.41,-59.26 167.66,-63.27"/>
+<polygon fill="black" stroke="black" points="166.31,-66.51 176.9,-66.3 168.49,-59.86 166.31,-66.51"/>
+</g>
+<!-- Users -->
+<g id="node5" class="node">
+<title>Users</title>
+<polygon fill="lightgreen" stroke="black" points="451.75,-106 396.6,-106 396.6,-70 451.75,-70 451.75,-106"/>
+<text text-anchor="middle" x="424.18" y="-83.8" font-family="Verdana" font-size="14.00">Users</text>
+</g>
+<!-- VirtualLayer&#45;&gt;Users -->
+<g id="edge4" class="edge">
+<title>VirtualLayer-&gt;Users</title>
+<path fill="none" stroke="black" d="M311.65,-88C336.49,-88 363.83,-88 385.23,-88"/>
+<polygon fill="black" stroke="black" points="384.93,-91.5 394.93,-88 384.93,-84.5 384.93,-91.5"/>
+<text text-anchor="middle" x="353.91" y="-92.2" font-family="Times,serif" font-size="14.00">BI Tools</text>
+</g>
+</g>
+</svg>

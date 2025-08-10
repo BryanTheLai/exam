@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="356pt" height="176pt" viewBox="0.00 0.00 356.48 176.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 172)">
+<title>Schemas</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-172 352.48,-172 352.48,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_star</title>
+<polygon fill="none" stroke="black" points="8,-8 8,-80 218.77,-80 218.77,-8 8,-8"/>
+<text text-anchor="middle" x="113.38" y="-67" font-family="Verdana" font-size="10.00">Star Schema (Simple, Fast)</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_snowflake</title>
+<polygon fill="none" stroke="black" points="8,-88 8,-160 340.48,-160 340.48,-88 8,-88"/>
+<text text-anchor="middle" x="174.24" y="-147" font-family="Verdana" font-size="10.00">Snowflake Schema (Complex, Slow)</text>
+</g>
+<!-- fact_star -->
+<g id="node1" class="node">
+<title>fact_star</title>
+<path fill="orange" stroke="black" d="M77.05,-52C77.05,-52 28,-52 28,-52 22,-52 16,-46 16,-40 16,-40 16,-28 16,-28 16,-22 22,-16 28,-16 28,-16 77.05,-16 77.05,-16 83.05,-16 89.05,-22 89.05,-28 89.05,-28 89.05,-40 89.05,-40 89.05,-46 83.05,-52 77.05,-52"/>
+<text text-anchor="middle" x="52.53" y="-31.6" font-family="Verdana" font-size="8.00">SALES_FACTS</text>
+</g>
+<!-- dim_prod_star -->
+<g id="node2" class="node">
+<title>dim_prod_star</title>
+<path fill="none" stroke="black" d="M198.77,-52C198.77,-52 137.05,-52 137.05,-52 131.05,-52 125.05,-46 125.05,-40 125.05,-40 125.05,-28 125.05,-28 125.05,-22 131.05,-16 137.05,-16 137.05,-16 198.77,-16 198.77,-16 204.77,-16 210.77,-22 210.77,-28 210.77,-28 210.77,-40 210.77,-40 210.77,-46 204.77,-52 198.77,-52"/>
+<text text-anchor="middle" x="167.91" y="-36.4" font-family="Verdana" font-size="8.00">DIM_PRODUCT</text>
+<text text-anchor="middle" x="167.91" y="-26.8" font-family="Verdana" font-size="8.00">(Category Name)</text>
+</g>
+<!-- fact_star&#45;&gt;dim_prod_star -->
+<g id="edge1" class="edge">
+<title>fact_star-&gt;dim_prod_star</title>
+<path fill="none" stroke="black" d="M89.4,-34C97.08,-34 105.34,-34 113.51,-34"/>
+<polygon fill="black" stroke="black" points="113.42,-37.5 123.42,-34 113.42,-30.5 113.42,-37.5"/>
+</g>
+<!-- fact_snow -->
+<g id="node3" class="node">
+<title>fact_snow</title>
+<path fill="orange" stroke="black" d="M77.05,-132C77.05,-132 28,-132 28,-132 22,-132 16,-126 16,-120 16,-120 16,-108 16,-108 16,-102 22,-96 28,-96 28,-96 77.05,-96 77.05,-96 83.05,-96 89.05,-102 89.05,-108 89.05,-108 89.05,-120 89.05,-120 89.05,-126 83.05,-132 77.05,-132"/>
+<text text-anchor="middle" x="52.53" y="-111.6" font-family="Verdana" font-size="8.00">SALES_FACTS</text>
+</g>
+<!-- dim_prod_snow -->
+<g id="node4" class="node">
+<title>dim_prod_snow</title>
+<path fill="none" stroke="black" d="M194.2,-132C194.2,-132 141.62,-132 141.62,-132 135.62,-132 129.62,-126 129.62,-120 129.62,-120 129.62,-108 129.62,-108 129.62,-102 135.62,-96 141.62,-96 141.62,-96 194.2,-96 194.2,-96 200.2,-96 206.2,-102 206.2,-108 206.2,-108 206.2,-120 206.2,-120 206.2,-126 200.2,-132 194.2,-132"/>
+<text text-anchor="middle" x="167.91" y="-111.6" font-family="Verdana" font-size="8.00">DIM_PRODUCT</text>
+</g>
+<!-- fact_snow&#45;&gt;dim_prod_snow -->
+<g id="edge2" class="edge">
+<title>fact_snow-&gt;dim_prod_snow</title>
+<path fill="none" stroke="black" d="M89.4,-114C98.44,-114 108.3,-114 117.87,-114"/>
+<polygon fill="black" stroke="black" points="117.8,-117.5 127.8,-114 117.8,-110.5 117.8,-117.5"/>
+</g>
+<!-- dim_cat_snow -->
+<g id="node5" class="node">
+<title>dim_cat_snow</title>
+<path fill="none" stroke="black" d="M320.48,-132C320.48,-132 258.77,-132 258.77,-132 252.77,-132 246.77,-126 246.77,-120 246.77,-120 246.77,-108 246.77,-108 246.77,-102 252.77,-96 258.77,-96 258.77,-96 320.48,-96 320.48,-96 326.48,-96 332.48,-102 332.48,-108 332.48,-108 332.48,-120 332.48,-120 332.48,-126 326.48,-132 320.48,-132"/>
+<text text-anchor="middle" x="289.62" y="-116.4" font-family="Verdana" font-size="8.00">DIM_CATEGORY</text>
+<text text-anchor="middle" x="289.62" y="-106.8" font-family="Verdana" font-size="8.00">(Category Name)</text>
+</g>
+<!-- dim_prod_snow&#45;&gt;dim_cat_snow -->
+<g id="edge3" class="edge">
+<title>dim_prod_snow-&gt;dim_cat_snow</title>
+<path fill="none" stroke="black" d="M206.46,-114C215.63,-114 225.61,-114 235.35,-114"/>
+<polygon fill="black" stroke="black" points="235.11,-117.5 245.11,-114 235.11,-110.5 235.11,-117.5"/>
+</g>
+</g>
+</svg>

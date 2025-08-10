@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="414pt" height="65pt" viewBox="0.00 0.00 414.48 65.20">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 61.2)">
+<title>Centralized</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-61.2 410.48,-61.2 410.48,4 -4,4"/>
+<!-- Sources -->
+<g id="node1" class="node">
+<title>Sources</title>
+<path fill="lightblue" stroke="black" d="M71.83,-43.33C71.83,-45.13 55.73,-46.6 35.91,-46.6 16.1,-46.6 0,-45.13 0,-43.33 0,-43.33 0,-13.87 0,-13.87 0,-12.07 16.1,-10.6 35.91,-10.6 55.73,-10.6 71.83,-12.07 71.83,-13.87 71.83,-13.87 71.83,-43.33 71.83,-43.33"/>
+<path fill="none" stroke="black" d="M71.83,-43.33C71.83,-41.52 55.73,-40.05 35.91,-40.05 16.1,-40.05 0,-41.52 0,-43.33"/>
+<text text-anchor="middle" x="35.91" y="-24.4" font-family="Verdana" font-size="14.00">Sources</text>
+</g>
+<!-- EDW -->
+<g id="node2" class="node">
+<title>EDW</title>
+<path fill="lightblue" stroke="black" d="M265.94,-52C265.94,-54.87 236.26,-57.2 199.71,-57.2 163.17,-57.2 133.48,-54.87 133.48,-52 133.48,-52 133.48,-5.2 133.48,-5.2 133.48,-2.33 163.17,0 199.71,0 236.26,0 265.94,-2.33 265.94,-5.2 265.94,-5.2 265.94,-52 265.94,-52"/>
+<path fill="none" stroke="black" d="M265.94,-52C265.94,-49.13 236.26,-46.8 199.71,-46.8 163.17,-46.8 133.48,-49.13 133.48,-52"/>
+<text text-anchor="middle" x="199.71" y="-32.8" font-family="Verdana" font-size="14.00">Enterprise</text>
+<text text-anchor="middle" x="199.71" y="-16" font-family="Verdana" font-size="14.00">Data Warehouse</text>
+</g>
+<!-- Sources&#45;&gt;EDW -->
+<g id="edge1" class="edge">
+<title>Sources-&gt;EDW</title>
+<path fill="none" stroke="black" d="M72.02,-28.6C86.66,-28.6 104.28,-28.6 121.66,-28.6"/>
+<polygon fill="black" stroke="black" points="121.51,-32.1 131.51,-28.6 121.51,-25.1 121.51,-32.1"/>
+<text text-anchor="middle" x="102.66" y="-32.8" font-family="Times,serif" font-size="14.00">ETL</text>
+</g>
+<!-- Users -->
+<g id="node3" class="node">
+<title>Users</title>
+<polygon fill="lightgreen" stroke="black" points="406.48,-46.6 351.33,-46.6 351.33,-10.6 406.48,-10.6 406.48,-46.6"/>
+<text text-anchor="middle" x="378.91" y="-24.4" font-family="Verdana" font-size="14.00">Users</text>
+</g>
+<!-- EDW&#45;&gt;Users -->
+<g id="edge2" class="edge">
+<title>EDW-&gt;Users</title>
+<path fill="none" stroke="black" d="M266.44,-28.6C291.21,-28.6 318.53,-28.6 339.92,-28.6"/>
+<polygon fill="black" stroke="black" points="339.63,-32.1 349.63,-28.6 339.63,-25.1 339.63,-32.1"/>
+<text text-anchor="middle" x="308.64" y="-32.8" font-family="Times,serif" font-size="14.00">BI Tools</text>
+</g>
+</g>
+</svg>

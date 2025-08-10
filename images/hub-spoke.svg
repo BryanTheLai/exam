@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="555pt" height="140pt" viewBox="0.00 0.00 554.66 140.20">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 136.2)">
+<title>HubAndSpoke</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-136.2 550.66,-136.2 550.66,4 -4,4"/>
+<!-- Sources -->
+<g id="node1" class="node">
+<title>Sources</title>
+<path fill="lightblue" stroke="black" d="M71.83,-80.33C71.83,-82.13 55.73,-83.6 35.91,-83.6 16.1,-83.6 0,-82.13 0,-80.33 0,-80.33 0,-50.87 0,-50.87 0,-49.07 16.1,-47.6 35.91,-47.6 55.73,-47.6 71.83,-49.07 71.83,-50.87 71.83,-50.87 71.83,-80.33 71.83,-80.33"/>
+<path fill="none" stroke="black" d="M71.83,-80.33C71.83,-78.52 55.73,-77.05 35.91,-77.05 16.1,-77.05 0,-78.52 0,-80.33"/>
+<text text-anchor="middle" x="35.91" y="-61.4" font-family="Verdana" font-size="14.00">Sources</text>
+</g>
+<!-- EDW -->
+<g id="node2" class="node">
+<title>EDW</title>
+<path fill="lightblue" stroke="black" d="M228.71,-80.33C228.71,-82.13 207.37,-83.6 181.1,-83.6 154.82,-83.6 133.48,-82.13 133.48,-80.33 133.48,-80.33 133.48,-50.87 133.48,-50.87 133.48,-49.07 154.82,-47.6 181.1,-47.6 207.37,-47.6 228.71,-49.07 228.71,-50.87 228.71,-50.87 228.71,-80.33 228.71,-80.33"/>
+<path fill="none" stroke="black" d="M228.71,-80.33C228.71,-78.52 207.37,-77.05 181.1,-77.05 154.82,-77.05 133.48,-78.52 133.48,-80.33"/>
+<text text-anchor="middle" x="181.1" y="-61.4" font-family="Verdana" font-size="14.00">EDW (Hub)</text>
+</g>
+<!-- Sources&#45;&gt;EDW -->
+<g id="edge1" class="edge">
+<title>Sources-&gt;EDW</title>
+<path fill="none" stroke="black" d="M72.31,-65.6C87.24,-65.6 105.04,-65.6 121.81,-65.6"/>
+<polygon fill="black" stroke="black" points="121.71,-69.1 131.71,-65.6 121.71,-62.1 121.71,-69.1"/>
+<text text-anchor="middle" x="102.66" y="-69.8" font-family="Times,serif" font-size="14.00">ETL</text>
+</g>
+<!-- Mkt_Mart -->
+<g id="node3" class="node">
+<title>Mkt_Mart</title>
+<path fill="lightblue" stroke="black" d="M406.12,-127C406.12,-129.87 381.75,-132.2 351.74,-132.2 321.74,-132.2 297.37,-129.87 297.37,-127 297.37,-127 297.37,-80.2 297.37,-80.2 297.37,-77.33 321.74,-75 351.74,-75 381.75,-75 406.12,-77.33 406.12,-80.2 406.12,-80.2 406.12,-127 406.12,-127"/>
+<path fill="none" stroke="black" d="M406.12,-127C406.12,-124.13 381.75,-121.8 351.74,-121.8 321.74,-121.8 297.37,-124.13 297.37,-127"/>
+<text text-anchor="middle" x="351.74" y="-107.8" font-family="Verdana" font-size="14.00">Marketing</text>
+<text text-anchor="middle" x="351.74" y="-91" font-family="Verdana" font-size="14.00">Mart (Spoke)</text>
+</g>
+<!-- EDW&#45;&gt;Mkt_Mart -->
+<g id="edge2" class="edge">
+<title>EDW-&gt;Mkt_Mart</title>
+<path fill="none" stroke="black" d="M229.07,-76.19C246.59,-80.13 266.8,-84.69 285.65,-88.93"/>
+<polygon fill="black" stroke="black" points="284.87,-92.35 295.4,-91.13 286.41,-85.52 284.87,-92.35"/>
+<text text-anchor="middle" x="263.04" y="-91.08" font-family="Times,serif" font-size="14.00">Feeds</text>
+</g>
+<!-- Fin_Mart -->
+<g id="node4" class="node">
+<title>Fin_Mart</title>
+<path fill="lightblue" stroke="black" d="M406.12,-52C406.12,-54.87 381.75,-57.2 351.74,-57.2 321.74,-57.2 297.37,-54.87 297.37,-52 297.37,-52 297.37,-5.2 297.37,-5.2 297.37,-2.33 321.74,0 351.74,0 381.75,0 406.12,-2.33 406.12,-5.2 406.12,-5.2 406.12,-52 406.12,-52"/>
+<path fill="none" stroke="black" d="M406.12,-52C406.12,-49.13 381.75,-46.8 351.74,-46.8 321.74,-46.8 297.37,-49.13 297.37,-52"/>
+<text text-anchor="middle" x="351.74" y="-32.8" font-family="Verdana" font-size="14.00">Finance</text>
+<text text-anchor="middle" x="351.74" y="-16" font-family="Verdana" font-size="14.00">Mart (Spoke)</text>
+</g>
+<!-- EDW&#45;&gt;Fin_Mart -->
+<g id="edge3" class="edge">
+<title>EDW-&gt;Fin_Mart</title>
+<path fill="none" stroke="black" d="M229.07,-55.29C246.59,-51.45 266.8,-47.02 285.65,-42.88"/>
+<polygon fill="black" stroke="black" points="286.38,-46.3 295.4,-40.74 284.88,-39.47 286.38,-46.3"/>
+<text text-anchor="middle" x="263.04" y="-54.61" font-family="Times,serif" font-size="14.00">Feeds</text>
+</g>
+<!-- Users -->
+<g id="node5" class="node">
+<title>Users</title>
+<polygon fill="lightgreen" stroke="black" points="546.66,-83.6 491.51,-83.6 491.51,-47.6 546.66,-47.6 546.66,-83.6"/>
+<text text-anchor="middle" x="519.08" y="-61.4" font-family="Verdana" font-size="14.00">Users</text>
+</g>
+<!-- Mkt_Mart&#45;&gt;Users -->
+<g id="edge4" class="edge">
+<title>Mkt_Mart-&gt;Users</title>
+<path fill="none" stroke="black" d="M406.42,-91.26C430.4,-85.75 458.11,-79.38 479.92,-74.37"/>
+<polygon fill="black" stroke="black" points="480.62,-77.8 489.58,-72.15 479.05,-70.98 480.62,-77.8"/>
+<text text-anchor="middle" x="448.81" y="-91.08" font-family="Times,serif" font-size="14.00">BI Tools</text>
+</g>
+<!-- Fin_Mart&#45;&gt;Users -->
+<g id="edge5" class="edge">
+<title>Fin_Mart-&gt;Users</title>
+<path fill="none" stroke="black" d="M406.42,-40.61C430.4,-45.98 458.11,-52.18 479.92,-57.06"/>
+<polygon fill="black" stroke="black" points="479.05,-60.45 489.58,-59.22 480.58,-53.62 479.05,-60.45"/>
+<text text-anchor="middle" x="448.81" y="-58.87" font-family="Times,serif" font-size="14.00">BI Tools</text>
+</g>
+</g>
+</svg>
