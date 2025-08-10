@@ -52,94 +52,31 @@ This is the high-level philosophical choice you make before building.
 A single, massive EDW serves all users directly. No data marts.
 *   **Best for:** Mid-sized organizations with uniform data needs.
 
-```graphviz
-digraph Centralized {
-    rankdir=LR;
-    graph [fontsize=10, fontname="Verdana"];
-    node [shape=cylinder, style=filled, fillcolor=lightblue, fontname="Verdana"];
-    Sources -> EDW [label="ETL"];
-    EDW -> Users [label="BI Tools"];
-    EDW [label="Enterprise\nData Warehouse"];
-    Users [shape=box, fillcolor=lightgreen];
-}
-```
+![Centralized Data Warehouse](images/EDW.svg)
 
 ##### **2. Hub-and-Spoke (Practical Inmon)**
 A central EDW (the "hub") feeds data to **dependent data marts** (the "spokes"). **This is the most popular, robust architecture.**
 *   **Best for:** Large enterprises with diverse user groups needing both **central governance** and high performance.
 
-```graphviz
-digraph HubAndSpoke {
-    rankdir=LR;
-    graph [fontsize=10, fontname="Verdana"];
-    node [shape=cylinder, style=filled, fillcolor=lightblue, fontname="Verdana"];
-    Sources -> EDW [label="ETL"];
-    EDW [label="EDW (Hub)"];
-    EDW -> {Mkt_Mart, Fin_Mart} [label="Feeds"];
-    Mkt_Mart [label="Marketing\nMart (Spoke)"];
-    Fin_Mart [label="Finance\nMart (Spoke)"];
-    {Mkt_Mart, Fin_Mart} -> Users [label="BI Tools"];
-    Users [shape=box, fillcolor=lightgreen];
-}
-```
+![Hub-and-Spoke Architecture](images/hub-spoke.svg)
 
 ##### **3. Data Mart Bus (Kimball)**
 Individual data marts are built first and linked by **conformed dimensions**. The "warehouse" is the logical combination of these marts.
 *   **Best for:** Agile organizations needing quick wins, with strong governance to enforce conformed dimensions.
 
-```graphviz
-digraph Bus {
-    rankdir=LR;
-    graph [fontsize=10, fontname="Verdana"];
-    node [shape=cylinder, style=filled, fillcolor=lightblue, fontname="Verdana"];
-    Sources -> {Sales_Mart, Mkt_Mart} [label="ETL"];
-    Conformed_Dim [label="Conformed Dimensions\n(e.g., Customer, Date)", shape=box, style=dashed];
-    Sales_Mart -> Conformed_Dim [dir=both, style=dashed];
-    Mkt_Mart -> Conformed_Dim [dir=both, style=dashed];
-    {Sales_Mart, Mkt_Mart} -> Users [label="BI Tools"];
-    Users [shape=box, fillcolor=lightgreen];
-}
-```
+![Data Mart Bus Architecture](images/bus.svg)
 
 ##### **4. Independent Data Marts (The Anti-Pattern)**
 Departments build their own marts with no coordination. **This architecture is considered a failure.**
 *   **Consequence:** Inconsistent **data silos**, impossible to get an enterprise view.
 
-```graphviz
-digraph Independent {
-    rankdir=LR;
-    graph [fontsize=10, fontname="Verdana"];
-    node [shape=cylinder, style=filled, fillcolor=lightblue, fontname="Verdana"];
-    Mkt_Src -> Mkt_Mart [label="ETL"];
-    Fin_Src -> Fin_Mart [label="ETL"];
-    Mkt_Mart -> Mkt_Users [label="BI Tools"];
-    Fin_Mart -> Fin_Users [label="BI Tools"];
-    Mkt_Users [shape=box, fillcolor=lightgreen];
-    Fin_Users [shape=box, fillcolor=lightgreen];
-}
-```
+![Independent Data Marts](images/indepen.svg)
 
 ##### **5. Federated Data Warehouse (The Pragmatic Integrator)**
 A **virtual warehouse**. It leaves existing systems in place and uses middleware to provide a unified logical view.
 *   **Best for:** Companies post-merger that need to integrate disparate legacy systems **quickly** without a full rebuild.
 
-```graphviz
-digraph Federated {
-    rankdir=LR;
-    graph [fontsize=10, fontname="Verdana"];
-    node [style=filled, fontname="Verdana"];
-    subgraph cluster_sources {
-        label="Existing Legacy Systems";
-        style=dashed;
-        node [shape=cylinder, fillcolor=lightgray];
-        Src1 [label="Old DW"]; Src2 [label="Sales Mart"]; Src3 [label="Operational DB"];
-    }
-    VirtualLayer [shape=box, label="Federation Layer\n(Middleware)", fillcolor=lightyellow];
-    Users [shape=box, fillcolor=lightgreen];
-    {Src1, Src2, Src3} -> VirtualLayer;
-    VirtualLayer -> Users [label="BI Tools"];
-}
-```
+![Federated Data Warehouse](images/federated.svg)
 
 ---
 
@@ -157,30 +94,7 @@ The **Star Schema** is the preferred standard. Snowflake is a variation that sho
 | **Performance**| **Very Fast** query performance. | **Slower** query performance due to additional joins. |
 | **Usability** | **Intuitive** and easy for business users to understand. | **Complex** and difficult for users to navigate. |
 
-```graphviz
-digraph Schemas {
-    rankdir=LR;
-    graph [fontname="Verdana", fontsize=10];
-    node [shape=box, style=rounded, fontname="Verdana", fontsize=8];
-    edge [fontsize=8];
-
-    subgraph cluster_star {
-        label="Star Schema (Simple, Fast)";
-        fact_star [label="SALES_FACTS", shape=box, style="rounded,filled", fillcolor=orange];
-        dim_prod_star [label="DIM_PRODUCT\n(Category Name)"];
-        fact_star -> dim_prod_star;
-    }
-
-    subgraph cluster_snowflake {
-        label="Snowflake Schema (Complex, Slow)";
-        fact_snow [label="SALES_FACTS", shape=box, style="rounded,filled", fillcolor=orange];
-        dim_prod_snow [label="DIM_PRODUCT"];
-        dim_cat_snow [label="DIM_CATEGORY\n(Category Name)"];
-        fact_snow -> dim_prod_snow;
-        dim_prod_snow -> dim_cat_snow;
-    }
-}
-```
+![Schema Comparison: Star vs. Snowflake](images/schemas.svg)
 
 **B. Table Characteristics:**
 
