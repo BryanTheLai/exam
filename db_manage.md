@@ -1,12 +1,40 @@
-#### **Chapter 1 & 2: The Why and What of Databases**
+### **The Complete BACS3183 Study Guide (Chapters 1-5)**
 
-**1. The Core Problem: Traditional File Processing**
-The old way of storing data in separate files for each application was fundamentally broken.
-*   **Data Redundancy:** The same data (e.g., a customer's address) is duplicated in multiple files.
-*   **Data Inconsistency:** The most dangerous flaw. If you update an address in one file but not another, the data is now unreliable.
-*   **Program-Data Dependence:** Programs were tied to the physical file structure. Change the file, and you must rewrite the program.
+#### **Chapter 1: Information Models & Core Concepts**
 
-These issues lead directly to **Data Anomalies**, the problems we solve with normalization.
+**1. The DIKW Pyramid: The Goal of a Database**
+Transforms raw facts into decisions.
+
+*   **Data:** Raw, unorganized facts. No context.
+    *   *Example:* `S1111`, `Alice Ng`, `25`
+*   **Information:** Data processed with context. Answers "who, what, where, when."
+    *   *Example:* The student `Alice Ng (S1111)` scored `25` on the exam.
+*   **Knowledge:** Information understood and applied. Answers "how."
+    *   *Example:* Knowing Alice Ng failed, we know *how* to take the next step: schedule her for a re-sit exam.
+
+**2. Categorization of Information**
+*   **By Nature:**
+    *   **Quantitative:** Numerical, measurable. **QUANTITY**. (e.g., Height, Price, Age).
+    *   **Qualitative:** Descriptive, characteristic. **QUALITY**. (e.g., Color, Material, Shape).
+*   **By Level (Decision Making):**
+    *   **Strategic:** High-level summaries for long-term goals.
+    *   **Tactical:** Mid-level info for departmental planning.
+    *   **Operational:** Detailed info for daily tasks.
+
+**3. Metadata: Data About Data**
+*   **Definition:** Information that describes the structure, rules, and context of the actual data. It's the "blueprint" of the database.
+*   **Data Dictionary:** The central repository where all metadata is stored. The DBMS consults this for every operation.
+
+---
+
+#### **Chapter 2: Database Systems**
+
+**1. The Problem: Traditional File Processing**
+The old way of storing data in separate files for each application.
+
+*   **Data Redundancy:** Same data duplicated across many files.
+*   **Program-Data Dependence:** Program logic is tied to the physical file structure.
+*   **Data Inconsistency:** The critical failure. Update data in one file but not another, leading to unreliable information.
 
 **2. The Solution: The Database Approach**
 A **Database Management System (DBMS)** is the software that solves these problems by:
@@ -14,143 +42,155 @@ A **Database Management System (DBMS)** is the software that solves these proble
 2.  Enforcing rules to maintain consistency.
 3.  Separating the logical data from the physical storage.
 
-**3. Key DBMS Functions & Integrity Constraints**
-A DBMS provides critical services. You must know these.
+**3. Integrity Constraints (Directly from midterm)**
+These are the rules enforced by the DBMS to ensure data quality.
 
-*   **Concurrency Control:** Manages simultaneous user access, preventing errors like two people booking the same seat.
-*   **Backup and Recovery:** Protects against data loss.
-*   **Security:** Handles authentication (who you are) and authorization (what you can do).
-*   **Integrity Services:** Enforces data accuracy using rules called **integrity constraints**.
-
-**Oracle Integrity Constraints (Directly from your Midterm):**
-*   **PRIMARY KEY:** A combination of `NOT NULL` and `UNIQUE`. It uniquely identifies every row in a table. A table can only have one.
-*   **FOREIGN KEY:** The primary key of one table placed in another to create a link. It enforces **referential integrity**, ensuring you cannot link to a non-existent record (e.g., assign an order to a customer who doesn't exist).
 *   **NOT NULL:** Ensures a column cannot contain a NULL value.
-*   **UNIQUE:** Ensures all values in a column (or set of columns) are unique. It allows NULLs.
-*   **CHECK:** A powerful constraint that enforces a custom rule on a column's values.
+*   **UNIQUE:** Ensures all values in a column are unique. Allows NULLs.
+*   **PRIMARY KEY:** A combination of `NOT NULL` and `UNIQUE`. Uniquely identifies every row in a table. A table can only have one.
+*   **FOREIGN KEY:** A primary key from one table placed in another to create a link. Enforces **referential integrity** (prevents "orphan" records).
+*   **CHECK:** Enforces a custom business rule on a column's values.
     *   *Example:* `CHECK (Salary > 0)` or `CHECK (Gender IN ('M', 'F'))`.
 
----
+**4. ANSI-SPARC Three-Level Architecture**
+The standard model for separating different views of data.
 
-### **Chapter 3: Database Architecture (The Blueprint)**
+*   **Internal Level (Physical):** **How** the data is physically stored (files, indexes).
+*   **Conceptual Level (Logical):** **What** data is stored (the entire database schema, ERD).
+*   **External Level (View):** The **part** of the database a specific user or application sees.
 
-**The ANSI-SPARC Three-Level Architecture**
-This is the standard model for how databases are structured to provide data independence.
+**5. Data Independence**
+The primary benefit of the Three-Level Architecture.
 
-1.  **Internal Level (Physical):**
-    *   **Concern:** *How* the data is physically stored on disk.
-    *   **Details:** File structures, indexes, pointers.
-    *   **Analogy:** The actual electrical wiring and plumbing inside the walls of a house.
-
-2.  **Conceptual Level (Logical):**
-    *   **Concern:** *What* data is stored and the relationships between data for the entire organization.
-    *   **Details:** The complete ERD, all entities, all attributes, all relationships.
-    *   **Analogy:** The architect's complete blueprint of the house, showing every room and how they connect.
-
-3.  **External Level (View):**
-    *   **Concern:** A specific user's or application's view of the data.
-    *   **Details:** Only the parts of the conceptual model that a user needs to see.
-    *   **Analogy:** The view of the house a plumber sees (only pipes and fixtures) or an electrician sees (only wiring and outlets).
-
-**Data Independence: The Main Goal**
-*   **Physical Data Independence:** You can change the **Internal Level** (e.g., move to a faster SSD) without affecting the **Conceptual Level**. The blueprint of the house doesn't change just because you use copper pipes instead of PVC.
-*   **Logical Data Independence:** You can change the **Conceptual Level** (e.g., add a new room to the blueprint) without affecting existing **External Views**. The plumber's view of the existing bathroom doesn't change just because you added a new bedroom.
+*   **Physical Data Independence:** Change the **Internal Level** without affecting the **Conceptual Level**.
+*   **Logical Data Independence:** Change the **Conceptual Level** without affecting existing **External Views**.
 
 ---
 
-### **Chapter 4: Relational Algebra (The Language of Data Manipulation)**
+#### **Chapter 3: Data Modelling**
 
-This is the formal theory behind SQL. It describes operations on tables.
+**1. Core Concepts**
+*   **Entity-Relationship (ER) Model:** The blueprint for conceptual design.
+    *   **Entity:** An object or concept (`Student`).
+    *   **Attribute:** A property of an entity (`StudentName`).
+    *   **Relationship:** An association between entities (`Student` *enrolls in* `Course`).
+*   **Relational Model:** Data is stored in **tables** (relations).
+
+---
+
+#### **Chapter 4: Relational Algebra**
+
+The formal, mathematical language behind SQL.
 
 **Symbols you MUST know:**
-*   `σ` (Sigma): SELECT (filters rows)
-*   `π` (Pi): PROJECT (selects columns)
-*   `⨝`: Natural Join
-*   `∪`: Union
-*   `∩`: Intersection
-*   `-`: Difference
+*   `σ` (Sigma): **SELECT** (filters rows)
+*   `π` (Pi): **PROJECT** (selects columns)
+*   `⨝`: **Natural Join**
+*   `∪`: **Union**
+*   `∩`: **Intersection**
+*   `-`: **Difference**
 
-| Operation | Symbol | What it Does | SQL Equivalent |
+**Operations Summary:**
+| Operation | Symbol | Action | SQL Equivalent |
 | :--- | :--- | :--- | :--- |
-| **SELECT** | `σ` | Filters **rows** based on a condition. | `WHERE` |
-| **PROJECT** | `π` | Selects **columns**. **Crucially, it also removes duplicate rows.** | `SELECT DISTINCT` |
-| **UNION** | `∪` | Combines rows from two compatible tables. Duplicates removed. | `UNION` |
-| **INTERSECTION** | `∩` | Returns only rows that exist in **both** tables. | `INTERSECT` |
-| **DIFFERENCE** | `-` | Returns rows in the first table but **not** in the second. | `EXCEPT` / `MINUS` |
-| **NATURAL JOIN**| `⨝` | Combines tables based on matching values in common columns. | `NATURAL JOIN` or `JOIN ... ON` |
-| **LEFT JOIN** | `⟕` | Includes all rows from the **left** table, plus matching rows from the right. | `LEFT OUTER JOIN` |
+| **SELECT** | `σ` | Filters **rows**. | `WHERE` |
+| **PROJECT** | `π` | Selects **columns**. | `SELECT DISTINCT` |
+| **UNION** | `∪` | Combines rows from two tables. | `UNION` |
+| **INTERSECTION**| `∩` | Returns rows in **both** tables. | `INTERSECT` |
+| **DIFFERENCE** | `-` | Returns rows in table A but **not** B. | `EXCEPT` / `MINUS` |
+| **NATURAL JOIN**| `⨝` | Combines tables on common columns. | `NATURAL JOIN` |
 
 ---
 
-### **Chapter 5: Normalization (The Process of Good Design)**
+#### **Chapter 5: Normalization**
 
-**GOAL:** Eliminate redundancy to prevent data anomalies.
-**TOOL:** Functional Dependencies (FDs).
+**The core goal: Organize tables to minimize redundancy and eliminate anomalies.**
 
-**1. Data Anomalies (The Problems to Solve)**
-*   **Insertion Anomaly:** Cannot add a fact about one entity until you have a fact about another.
-    *   *Example:* Cannot add a new `Item` with its `UnitPrice` until a `Customer` places an `Order` for it.
-*   **Modification (Update) Anomaly:** Changing one fact requires updating multiple rows.
-    *   *Example:* To change the `UnitPrice` of a 'Pencil', you must find and update every single order row where a pencil was sold.
-*   **Deletion Anomaly:** Deleting one fact causes the loss of another unrelated fact.
-    *   *Example:* If customer John's only order (`DO0002`) is deleted, the fact that item `I0003` is "Gum" with a price of `1.00` is completely lost from the database.
+**1. Data Anomalies (The Problems to Solve) (Directly from midterm)**
+*   **Insertion Anomaly:** Cannot add new data because other unrelated data is required.
+    *   *Example:* Cannot add a new `Item` (e.g., 'Eraser', 'I0011') to the `DeliveryOrder` table because it requires a `DO_No`, but the item hasn't been ordered yet.
+*   **Modification Anomaly:** A single logical update requires changing multiple physical rows.
+    *   *Example:* If customer 'Eric' changes his phone number, you must find and update it on **every single line item** he has ever ordered. Missing one creates inconsistency.
+*   **Deletion Anomaly:** Deleting one piece of information unintentionally deletes another unrelated fact.
+    *   *Example:* In the `DeliveryOrder` table, if you delete the only order line for 'Gum' (`I0003`), you lose the fact that `I0003` is 'Gum' and costs `1.00`.
 
-**2. Functional Dependency (The Core Concept)**
-*   **Definition:** `A -> B` means "A determines B". For any value of A, there is only ONE corresponding value of B.
-*   **Determinant:** The attribute on the left side of the arrow (A is the determinant).
+**2. Functional Dependencies (FDs): The Tool for Normalization**
+*   **Definition:** `A -> B` ("A determines B"). If you know A's value, you know B's single, unique value.
+*   **Partial Dependency:** A non-key attribute depends on only a **part** of a composite primary key.
+*   **Transitive Dependency:** A non-key attribute depends on another non-key attribute. (`PK -> Non-key A -> Non-key B`).
 
-**3. The Process: Step-by-Step Normal Forms**
+**3. The Normal Forms: A Step-by-Step Guide with Examples**
 
-Let's use the **DeliveryOrder** example from your slides.
+#### **Example 1: Normalizing `DeliveryOrder` (From your slides)**
 
-**Unnormalized Form (UNF):** A source document or a table with repeating groups.
-*   *Example:* One row for `DO0001` has multiple items listed within it.
+**1NF: Eliminate Repeating Groups**
+*   **Rule:** Each cell must hold a single value. The table must have a primary key.
+*   **Action:** Flatten the table by creating a unique row for each line item.
 
-#### **First Normal Form (1NF)**
-*   **Rule:** Every cell must have a single, atomic value. No repeating groups.
-*   **Action:** "Flatten the table." Create a new row for each item in the repeating group, duplicating the non-repeating data.
+**Before (Unnormalized Form - UNF):** One row for `DO0001` with multiple items.
+**After (First Normal Form - 1NF):**
+`DeliveryOrder1NF(<u>DO_No</u>, <u>ItemNo</u>, DelDate, CustNo, CustName, CustPhone, Desc, UnitPrice, Qty)`
 
-**The `DeliveryOrder` table is now in 1NF:**
-
-| DO_No | DelDate | CustNo | CustName | CustPhone | ItemNo | Desc | UnitPrice | Qty |
+| DO_No | ItemNo | DelDate | CustNo | CustName | CustPhone | Desc | UnitPrice | Qty |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| DO0001 | 23/8/05 | C0002 | Eric | 03-61381111 | I0007 | Pencil | 3.00 | 200 |
-| DO0001 | 23/8/05 | C0002 | Eric | 03-61381111 | I0010 | Paper | 8.00 | 100 |
-| DO0002 | 23/8/05 | C0003 | John | 03-41490888 | I0003 | Gum | 1.00 | 350 |
-| DO0002 | 23/8/05 | C0003 | John | 03-41490888 | I0007 | Pencil | 3.00 | 50 |
-| DO0002 | 23/8/05 | C0003 | John | 03-41490888 | I0010 | Paper | 8.00 | 500 |
+| DO0001| I0007 | 23/8/05 | C0002 | Eric | 03-61381111 | Pencil | 3.00 | 200 |
+| DO0001| I0010 | 23/8/05 | C0002 | Eric | 03-61381111 | Paper | 8.00 | 100 |
+| DO0002| I0003 | 23/8/05 | C0003 | John | 03-41490888 | Gum | 1.00 | 350 |
 
-**Problem:** Massive redundancy. We now have insertion, deletion, and modification anomalies.
+**2NF: Eliminate Partial Dependencies**
+*   **Rule:** Every non-key attribute must depend on the **entire** primary key.
+*   **Action:** Find attributes that depend on only part of the PK (`DO_No` or `ItemNo`) and move them to new tables.
 
-#### **Second Normal Form (2NF)**
-*   **Rule:** Must be in 1NF, and **every non-key attribute must be fully dependent on the entire primary key.** (This only applies if the PK is composite).
-*   **Action:** Remove **partial dependencies**.
+**FDs in 1NF table:**
+*   `DO_No` -> `DelDate`, `CustNo`, `CustName`, `CustPhone` (**Partial!** Depends only on `DO_No`)
+*   `ItemNo` -> `Desc`, `UnitPrice` (**Partial!** Depends only on `ItemNo`)
+*   (`DO_No`, `ItemNo`) -> `Qty` (Full Dependency - OK)
 
-1.  **Identify PK:** The primary key that uniquely identifies each row is `(DO_No, ItemNo)`.
-2.  **Identify FDs:**
-    *   `(DO_No, ItemNo) -> Qty` (**Full Dependency** - good)
-    *   `DO_No -> DelDate, CustNo, CustName, CustPhone` (**Partial Dependency** - bad! These depend only on `DO_No`)
-    *   `ItemNo -> Desc, UnitPrice` (**Partial Dependency** - bad! These depend only on `ItemNo`)
-3.  **Decompose:** Create new tables to remove the partial dependencies.
-
-**The tables are now in 2NF:**
-*   **DeliveryItem**(`<u>DO_No*</u>`, `<u>ItemNo*</u>`, Qty)
-*   **DeliveryOrder**(`<u>DO_No</u>`, DelDate, CustNo, CustName, CustPhone)
+**After (Second Normal Form - 2NF):**
+*   **DeliveryItem**(`<u>*DO_No*</u>`, `<u>*ItemNo*</u>`, Qty)
 *   **Item**(`<u>ItemNo</u>`, Desc, UnitPrice)
+*   **DeliveryOrder**(`<u>DO_No</u>`, DelDate, CustNo, CustName, CustPhone)
 
-**Problem:** We still have redundancy in the `DeliveryOrder` table.
+**3NF: Eliminate Transitive Dependencies**
+*   **Rule:** No non-key attribute can depend on another non-key attribute.
+*   **Action:** Find transitive FDs in the 2NF tables and move them to a new table.
 
-#### **Third Normal Form (3NF)**
-*   **Rule:** Must be in 2NF, and there must be **no transitive dependencies**. A transitive dependency is when a non-key attribute determines another non-key attribute (`A -> B -> C`).
-*   **Action:** Remove **transitive dependencies**.
+**FDs in 2NF tables:**
+*   In `DeliveryOrder`: `DO_No -> CustNo -> CustName, CustPhone` (**Transitive!**)
 
-1.  **Identify Transitive FDs:** In the `DeliveryOrder` table, `DO_No` is the key. We see that `DO_No -> CustNo`, and `CustNo -> CustName, CustPhone`. This is a classic transitive dependency. `CustName` and `CustPhone` depend on `CustNo`, which is not the primary key.
-2.  **Decompose:** Create a new table to remove the transitive dependency.
-
-**Final 3NF Relations (The "Correct" Design):**
-*   **DeliveryItem**(`<u>DO_No*</u>`, `<u>ItemNo*</u>`, Qty)
+**After (Third Normal Form - 3NF):**
+*   **DeliveryItem**(`<u>*DO_No*</u>`, `<u>*ItemNo*</u>`, Qty)
 *   **Item**(`<u>ItemNo</u>`, Desc, UnitPrice)
 *   **DeliveryOrder**(`<u>DO_No</u>`, DelDate, *CustNo*)
 *   **Customer**(`<u>CustNo</u>`, CustName, CustPhone)
 
-This structure is now free of redundancy and the associated anomalies. Study this process until it becomes second nature.
+---
+
+#### **Example 2: Normalizing `StudentResult` (Directly from midterm)**
+
+**1NF Table:**
+`StudentResult(<u>StudentID</u>, <u>CourseID</u>, <u>ExamDate</u>, StudentName, ProgID, ProgName, CourseName, LevelID, LevelDesc, Mark, Status)`
+
+**2NF: Eliminate Partial Dependencies**
+*   **FDs to find:** Attributes depending on just `StudentID` or just `CourseID`.
+    *   `StudentID -> StudentName, ProgID` (**Partial**)
+    *   `CourseID -> CourseName, LevelID` (**Partial**)
+*   **Action:** Create `Student` and `Course` tables.
+
+**Resulting 2NF Tables:**
+1.  **Result**(`<u>*StudentID*</u>`, `<u>*CourseID*</u>`, `<u>ExamDate</u>`, Mark, Status)
+2.  **Student**(`<u>StudentID</u>`, StudentName, ProgID)
+3.  **Course**(`<u>CourseID</u>`, CourseName, LevelID)
+
+**3NF: Eliminate Transitive Dependencies**
+*   **FDs to find:** Non-key attributes depending on other non-key attributes in the 2NF tables.
+    *   In `Student`: `StudentID -> ProgID -> ProgName` (**Transitive**)
+    *   In `Course`: `CourseID -> LevelID -> LevelDesc` (**Transitive**)
+*   **Action:** Create `Program` and `Level` tables.
+
+**Final 3NF Relations:**
+1.  **Result**(`<u>*StudentID*</u>`, `<u>*CourseID*</u>`, `<u>ExamDate</u>`, Mark, Status)
+2.  **Student**(`<u>StudentID</u>`, StudentName, *ProgID*)
+3.  **Course**(`<u>CourseID</u>`, CourseName, *LevelID*)
+4.  **Program**(`<u>ProgID</u>`, ProgName)
+5.  **Level**(`<u>LevelID</u>`, LevelDesc)
