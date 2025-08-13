@@ -3,9 +3,9 @@ Transforms raw facts into decisions.
 
 *   **Data:** Raw, unorganized facts. No context.
     *   *Example:* `S1111`, `Alice Ng`, `25`
-*   **Information:** Data processed with context. Answers "who, what, where, when."
+*   **Information:** Data with context and meaning.
     *   *Example:* The student `Alice Ng (S1111)` scored `25` on the exam.
-*   **Knowledge:** Information understood and applied. Answers "how."
+*   **Knowledge:** Understanding of information enabling decision making.
     *   *Example:* Knowing Alice Ng failed, we know *how* to take the next step: schedule her for a re-sit exam.
 
 **2. Categorization of Information** (IMPORTANT)
@@ -13,9 +13,9 @@ Transforms raw facts into decisions.
     *   **Quantitative:** Numerical, measurable. **QUANTITY**. (e.g., Height, Price, Age).
     *   **Qualitative:** Descriptive, characteristic. **QUALITY**. (e.g., Color, Material, Shape).
 *   **By Level (Decision Making):**
-    *   **Strategic:** High-level summaries for long-term goals.
-    *   **Tactical:** Mid-level info for departmental planning.
-    *   **Operational:** Detailed info for daily tasks.
+    *   **Strategic:** **High-level summaries** for long-term goals.
+    *   **Tactical:** **Mid-level** info for departmental planning.
+    *   **Operational:** Detailed info for **daily tasks.**
 
 
 **5. Data Independence**
@@ -27,11 +27,11 @@ The primary benefit of the Three-Level Architecture.
 **3. Integrity Constraints (Directly from midterm)** (IMPORTANT)
 These are the rules enforced by the DBMS to ensure data quality.
 
-*   **NOT NULL:** Ensures a column cannot contain a NULL value.
-*   **UNIQUE:** Ensures all values in a column are unique. Allows NULLs.
-*   **PRIMARY KEY:** A combination of `NOT NULL` and `UNIQUE`. Uniquely identifies every row in a table. A table can only have one.
-*   **FOREIGN KEY:** A primary key from one table placed in another to create a link. Enforces **referential integrity** (prevents "orphan" records).
-*   **CHECK:** Enforces a custom business rule on a column's values.
+*   **NOT NULL:** Ensures a column **cannot contain a NULL value**.
+*   **UNIQUE:** Ensures **all values** in a column are **unique**. Allows NULLs.
+*   **PRIMARY KEY:** A combination of **`NOT NULL`** and **`UNIQUE`**. Uniquely identifies every row in a table. A table can only have one.
+*   **FOREIGN KEY:** A primary key for 1 table to **link** to another. Enforces **referential integrity** (prevents "orphan" records).
+*   **CHECK:** **Enforces** a custom business **rule on a column's** values.
     *   *Example:* `CHECK (Salary > 0)` or `CHECK (Gender IN ('M', 'F'))`.
 
 
@@ -65,11 +65,11 @@ The formal, mathematical language behind SQL.
 
 
 **1. Data Anomalies (The Problems to Solve) (Directly from midterm)** (IMPORTANT)
-*   **Insertion Anomaly:** Cannot add new data because other unrelated data is required.
+*   **Insertion Anomaly:** **Cannot add new data** because other unrelated data is required.
     *   *Example:* Cannot add a new `Item` (e.g., 'Eraser', 'I0011') to the `DeliveryOrder` table because it requires a `DO_No`, but the item hasn't been ordered yet.
-*   **Modification Anomaly:** A single logical update requires changing multiple physical rows.
+*   **Modification Anomaly:** A single logical update **requires changing multiple physical rows**.
     *   *Example:* If customer 'Eric' changes his phone number, you must find and update it on **every single line item** he has ever ordered. Missing one creates inconsistency.
-*   **Deletion Anomaly:** Deleting one piece of information unintentionally deletes another unrelated fact.
+*   **Deletion Anomaly:** Deleting one piece of information **unintentionally deletes another unrelated fact**.
     *   *Example:* In the `DeliveryOrder` table, if you delete the only order line for 'Gum' (`I0003`), you lose the fact that `I0003` is 'Gum' and costs `1.00`.
 
 
